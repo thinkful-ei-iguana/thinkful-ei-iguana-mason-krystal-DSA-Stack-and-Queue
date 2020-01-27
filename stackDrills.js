@@ -1,6 +1,8 @@
 const Stack = require('./stack');
 const starTrek = new Stack();
 //questions # 1, 2, 3, 5, 6, 9, 10. 
+
+//1
 function main() {
   starTrek.push('Kirk');
   starTrek.push('Spock');
@@ -11,6 +13,7 @@ function main() {
 }
 main();
 
+//2
 function peek(stack) {
   console.log(stack.top.data);
 }
@@ -18,12 +21,11 @@ function peek(stack) {
 
 function isEmpty(stack) {
   if (stack.top === null) {
-    return "stack is empty";
+    return true;
   }
-  return "stack is NOT empty";
+  return false;
 }
 // console.log(isEmpty(starTrek));
-
 
 function display(stack) {
   if (stack.top === null) {
@@ -34,6 +36,7 @@ function display(stack) {
 }
 // display(starTrek);
 
+//3
 function is_palindrome(s) {
   s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
   const stack = new Stack();
@@ -53,6 +56,30 @@ function is_palindrome(s) {
 // console.log(is_palindrome("1001"));
 // console.log(is_palindrome("Tauhida"));
 
-function sortStack() {
-
+//5
+function sortStack(stack) {
+  let newStack = new Stack();
+  while (!isEmpty(stack)) {
+    let temp = stack.pop();
+    while (!isEmpty(newStack) && (peek(newStack) > temp)) {
+      stack.push(newStack.pop());
+    }
+    newStack.push(temp);
+  }
+  while (!isEmpty(newStack)) {
+    stack.push(newStack.pop());
+  }
 }
+
+let stack = new Stack();
+stack.push(5);
+stack.push(4);
+stack.push(2);
+stack.push(8);
+sortStack(stack);
+console.log(JSON.stringify(stack));
+
+
+//this is not correct still trying to figure it out
+
+
